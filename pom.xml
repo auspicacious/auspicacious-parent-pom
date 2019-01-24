@@ -36,7 +36,7 @@ Sections that did not require modification or management have been removed. Much
       <dependency>
         <groupId>org.checkerframework</groupId>
         <artifactId>checker-qual</artifactId>
-        <version>2.5.3</version>
+        <version>2.5.8</version>
       </dependency>
       <dependency>
         <groupId>com.google.errorprone</groupId>
@@ -46,7 +46,7 @@ Sections that did not require modification or management have been removed. Much
       <dependency>
         <groupId>com.github.spotbugs</groupId>
         <artifactId>spotbugs-annotations</artifactId>
-        <version>3.1.8</version>
+        <version>3.1.11</version>
       </dependency>
       <dependency>
         <groupId>org.ow2.asm</groupId>
@@ -64,7 +64,8 @@ Sections that did not require modification or management have been removed. Much
              said I'm not sure why common plugins like Surefire aren't
              in the super POM, as Maven does not seem to be
              complaining about lack of version number for those (until
-             I redefined them below). -->
+             I redefined them below) and versions-maven-plugin turned
+             up several more. -->
         <plugin>
           <artifactId>maven-antrun-plugin</artifactId>
           <version>1.8</version>
@@ -72,7 +73,7 @@ Sections that did not require modification or management have been removed. Much
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
           <artifactId>maven-assembly-plugin</artifactId>
-          <version>3.1.0</version>
+          <version>3.1.1</version>
         </plugin>
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
@@ -95,6 +96,26 @@ Sections that did not require modification or management have been removed. Much
           <artifactId>maven-release-plugin</artifactId>
           <version>2.5.3</version>
         </plugin>
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-clean-plugin</artifactId>
+          <version>3.1.0</version>
+        </plugin>
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-deploy-plugin</artifactId>
+          <version>3.0.0-M1</version>
+        </plugin>
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-install-plugin</artifactId>
+          <version>3.0.0-M1</version>
+        </plugin>
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-site-plugin</artifactId>
+          <version>3.7.1</version>
+        </plugin>
         <!-- End Super POM redefinitions -->
 
         <plugin>
@@ -108,6 +129,24 @@ Sections that did not require modification or management have been removed. Much
               <version>1.0-beta-9</version>
             </dependency>
           </dependencies>
+        </plugin>
+        <plugin>
+          <groupId>org.codehaus.mojo</groupId>
+          <artifactId>versions-maven-plugin</artifactId>
+          <version>2.7</version>
+          <configuration>
+            <formats>
+              <!-- TODO the display- output is often clearer than the
+                   HTML or XML output. For instance if a plugin
+                   doesn't have a version specified, this will be very
+                   clear from versions:display-plugin-updates. -->
+              <!-- TODO there is no XML report for property
+                   updates. Need to report an issue -->
+              <!-- https://github.com/mojohaus/versions-maven-plugin/issues -->
+              <format>html</format>
+              <format>xml</format>
+            </formats>
+          </configuration>
         </plugin>
         <plugin>
           <groupId>org.codehaus.mojo</groupId>
@@ -162,7 +201,7 @@ Sections that did not require modification or management have been removed. Much
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
           <artifactId>maven-surefire-plugin</artifactId>
-          <version>2.22.1</version>
+          <version>3.0.0-M3</version>
           <configuration>
             <systemPropertyVariables>
               <!-- This is used by logback test configurations. -->
@@ -230,7 +269,7 @@ Sections that did not require modification or management have been removed. Much
         <plugin>
           <groupId>com.github.spotbugs</groupId>
           <artifactId>spotbugs-maven-plugin</artifactId>
-          <version>3.1.7</version>
+          <version>3.1.10</version>
           <dependencies>
             <dependency>
               <groupId>com.github.spotbugs</groupId>
