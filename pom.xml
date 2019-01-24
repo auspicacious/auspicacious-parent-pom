@@ -57,16 +57,21 @@ Sections that did not require modification or management have been removed. Much
   </dependencyManagement>
 
   <build>
+    <!-- pluginManagement should be used here to control plugin
+         versions for all plugins, as well as necessary default
+         configuration for plugins that are invoked in child
+         builds. The plugins section, on the other hand, should be
+         used to define default invocations of plugins, and these
+         should be placed into profiles to prevent confusion, see note
+         below on the safeties profile. -->
     <pluginManagement>
       <plugins>
-        <!-- Redefine versions for these plugins away from what's
-             listed in the Super POM to avoid problems. That being
-             said I'm not sure why common plugins like Surefire aren't
-             in the super POM, as Maven does not seem to be
-             complaining about lack of version number for those (until
-             I redefined them below) and versions-maven-plugin turned
-             up several more. -->
+        <!-- Explicitly declare versions for all builtin Maven
+             plugins. This redefines versions that previously could
+             change as the Super POM is updated in each Maven
+             release. -->
         <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
           <artifactId>maven-antrun-plugin</artifactId>
           <version>1.8</version>
         </plugin>
@@ -77,81 +82,8 @@ Sections that did not require modification or management have been removed. Much
         </plugin>
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
-          <artifactId>maven-dependency-plugin</artifactId>
-          <version>3.1.1</version>
-          <dependencies>
-            <!-- TODO remove this dependency once a new version of
-                 maven-dependency-plugin is released that supports Java
-                 11 -->
-            <!-- https://issues.apache.org/jira/browse/MDEP-613 -->
-            <dependency>
-              <groupId>org.ow2.asm</groupId>
-              <artifactId>asm</artifactId>
-              <version>7.0</version>
-            </dependency>
-          </dependencies>
-        </plugin>
-        <plugin>
-          <groupId>org.apache.maven.plugins</groupId>
-          <artifactId>maven-release-plugin</artifactId>
-          <version>2.5.3</version>
-        </plugin>
-        <plugin>
-          <groupId>org.apache.maven.plugins</groupId>
           <artifactId>maven-clean-plugin</artifactId>
           <version>3.1.0</version>
-        </plugin>
-        <plugin>
-          <groupId>org.apache.maven.plugins</groupId>
-          <artifactId>maven-deploy-plugin</artifactId>
-          <version>3.0.0-M1</version>
-        </plugin>
-        <plugin>
-          <groupId>org.apache.maven.plugins</groupId>
-          <artifactId>maven-install-plugin</artifactId>
-          <version>3.0.0-M1</version>
-        </plugin>
-        <plugin>
-          <groupId>org.apache.maven.plugins</groupId>
-          <artifactId>maven-site-plugin</artifactId>
-          <version>3.7.1</version>
-        </plugin>
-        <!-- End Super POM redefinitions -->
-
-        <plugin>
-          <groupId>org.apache.maven.plugins</groupId>
-          <artifactId>maven-enforcer-plugin</artifactId>
-          <version>3.0.0-M2</version>
-          <dependencies>
-            <dependency>
-              <groupId>org.codehaus.mojo</groupId>
-              <artifactId>extra-enforcer-rules</artifactId>
-              <version>1.1</version>
-            </dependency>
-          </dependencies>
-        </plugin>
-        <plugin>
-          <groupId>org.codehaus.mojo</groupId>
-          <artifactId>versions-maven-plugin</artifactId>
-          <version>2.7</version>
-          <configuration>
-            <formats>
-              <!-- TODO the display- output is often clearer than the
-                   HTML or XML output. For instance if a plugin
-                   doesn't have a version specified, this will be very
-                   clear from versions:display-plugin-updates. -->
-              <!-- TODO there is no XML report for property
-                   updates. Need to report an issue -->
-              <!-- https://github.com/mojohaus/versions-maven-plugin/issues -->
-              <format>html</format>
-              <format>xml</format>
-            </formats>
-          </configuration>
-        </plugin>
-        <plugin>
-          <groupId>org.codehaus.mojo</groupId>
-          <artifactId>tidy-maven-plugin</artifactId>
-          <version>1.1.0</version>
         </plugin>
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
@@ -200,6 +132,52 @@ Sections that did not require modification or management have been removed. Much
         </plugin>
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-dependency-plugin</artifactId>
+          <version>3.1.1</version>
+          <dependencies>
+            <!-- TODO remove this dependency once a new version of
+                 maven-dependency-plugin is released that supports Java
+                 11 -->
+            <!-- https://issues.apache.org/jira/browse/MDEP-613 -->
+            <dependency>
+              <groupId>org.ow2.asm</groupId>
+              <artifactId>asm</artifactId>
+              <version>7.0</version>
+            </dependency>
+          </dependencies>
+        </plugin>
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-deploy-plugin</artifactId>
+          <version>3.0.0-M1</version>
+        </plugin>
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-install-plugin</artifactId>
+          <version>3.0.0-M1</version>
+        </plugin>
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-jar-plugin</artifactId>
+          <version>3.1.1</version>
+        </plugin>
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-release-plugin</artifactId>
+          <version>2.5.3</version>
+        </plugin>
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-resources-plugin</artifactId>
+          <version>3.1.0</version>
+        </plugin>
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-site-plugin</artifactId>
+          <version>3.7.1</version>
+        </plugin>
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
           <artifactId>maven-surefire-plugin</artifactId>
           <version>3.0.0-M3</version>
           <configuration>
@@ -211,6 +189,43 @@ Sections that did not require modification or management have been removed. Much
             <runOrder>random</runOrder>
             <trimStackTrace>false</trimStackTrace>
           </configuration>
+        </plugin>
+        <!-- End Super POM redefinitions -->
+
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-enforcer-plugin</artifactId>
+          <version>3.0.0-M2</version>
+          <dependencies>
+            <dependency>
+              <groupId>org.codehaus.mojo</groupId>
+              <artifactId>extra-enforcer-rules</artifactId>
+              <version>1.1</version>
+            </dependency>
+          </dependencies>
+        </plugin>
+        <plugin>
+          <groupId>org.codehaus.mojo</groupId>
+          <artifactId>versions-maven-plugin</artifactId>
+          <version>2.7</version>
+          <configuration>
+            <formats>
+              <!-- TODO the display- output is often clearer than the
+                   HTML or XML output. For instance if a plugin
+                   doesn't have a version specified, this will be very
+                   clear from versions:display-plugin-updates. -->
+              <!-- TODO there is no XML report for property
+                   updates. Need to report an issue -->
+              <!-- https://github.com/mojohaus/versions-maven-plugin/issues -->
+              <format>html</format>
+              <format>xml</format>
+            </formats>
+          </configuration>
+        </plugin>
+        <plugin>
+          <groupId>org.codehaus.mojo</groupId>
+          <artifactId>tidy-maven-plugin</artifactId>
+          <version>1.1.0</version>
         </plugin>
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
@@ -316,8 +331,10 @@ Sections that did not require modification or management have been removed. Much
                 <goals>
                   <goal>check</goal>
                 </goals>
-                <!-- Run during validate, not verify. This should fail the
-                     build process as early as possible -->
+                <!-- Run during validate, not verify. This should fail
+                     the build process as early as possible since
+                     these problems are generally easy to fix quickly
+                     and early. -->
                 <phase>validate</phase>
               </execution>
             </executions>
@@ -345,7 +362,9 @@ Sections that did not require modification or management have been removed. Much
             <artifactId>maven-pmd-plugin</artifactId>
             <executions>
               <execution>
-                <!-- TODO set up namespacing rules for all Maven execution IDs to avoid collisions or accidental overrides -->
+                <!-- TODO set up namespacing rules for all Maven
+                     execution IDs to avoid collisions or accidental
+                     overrides -->
                 <id>pmd</id>
                 <goals>
                   <goal>check</goal>
@@ -414,9 +433,9 @@ Sections that did not require modification or management have been removed. Much
                     </dependencyConvergence>
                     <!-- TODO turn this on after support for 11 is added -->
                     <!-- https://github.com/mojohaus/extra-enforcer-rules/pull/63/files-->
-                    <!-- <enforceBytecodeVersion> -->
-                    <!--   <maxJdkVersion>11</maxJdkVersion> -->
-                    <!-- </enforceBytecodeVersion> -->
+                    <enforceBytecodeVersion>
+                      <maxJdkVersion>11</maxJdkVersion>
+                    </enforceBytecodeVersion>
                     <!-- <requireEncoding /> TODO this doesn't work, often guesses ISO-8859-1 instead of UTF-8 -->
                     <!-- <reactorModuleConvergence /> TODO figure out how to apply this -->
                     <requireJavaVersion>
