@@ -57,14 +57,14 @@ Sections that did not require modification or management have been removed. Much
   </dependencyManagement>
 
   <build>
-    <!-- pluginManagement should be used here to control plugin
-         versions for all plugins, as well as necessary default
-         configuration for plugins that are invoked in child
-         builds. The plugins section, on the other hand, should be
-         used to define default invocations of plugins, and these
-         should be placed into profiles to prevent confusion, see note
-         below on the safeties profile. -->
     <pluginManagement>
+      <!-- pluginManagement should be used here to control plugin
+           versions for all plugins, as well as necessary default
+           configuration for plugins that are invoked in child
+           builds. The plugins section, on the other hand, should be
+           used to define default invocations of plugins, and these
+           should be placed into profiles to prevent confusion, see note
+           below on the safeties profile. -->
       <plugins>
         <!-- Explicitly declare versions for all builtin Maven
              plugins. This redefines versions that previously could
