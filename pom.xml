@@ -18,7 +18,7 @@ Sections that did not require modification or management have been removed. Much
     <linkXRef>false</linkXRef><!-- https://stackoverflow.com/questions/12038238/unable-to-locate-source-xref-to-link-to -->
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <version.auspicacious-parent-pom-resources>1-SNAPSHOT</version.auspicacious-parent-pom-resources>
-    <version.pmd>6.9.0</version.pmd>
+    <version.pmd>6.10.0</version.pmd>
   </properties>
 
   <dependencyManagement>
@@ -126,7 +126,7 @@ Sections that did not require modification or management have been removed. Much
             <dependency>
               <groupId>org.codehaus.mojo</groupId>
               <artifactId>extra-enforcer-rules</artifactId>
-              <version>1.0-beta-9</version>
+              <version>1.1</version>
             </dependency>
           </dependencies>
         </plugin>
@@ -220,7 +220,7 @@ Sections that did not require modification or management have been removed. Much
             <dependency>
               <groupId>com.puppycrawl.tools</groupId>
               <artifactId>checkstyle</artifactId>
-              <version>8.14</version>
+              <version>8.16</version>
             </dependency>
             <dependency>
               <groupId>org.auspicacious</groupId>
@@ -274,7 +274,7 @@ Sections that did not require modification or management have been removed. Much
             <dependency>
               <groupId>com.github.spotbugs</groupId>
               <artifactId>spotbugs</artifactId>
-              <version>3.1.8</version>
+              <version>3.1.11</version>
             </dependency>
             <dependency>
               <groupId>org.auspicacious</groupId>
