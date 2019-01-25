@@ -350,8 +350,9 @@ Sections that did not require modification or management have been removed. Much
                 </goals>
                 <configuration>
                   <configLocation>checkstyle.xml</configLocation>
-                  <!-- We should only use levels error and info, warnings
-                       are not helpful -->
+                  <!-- We should only use levels error and info,
+                       warnings are not helpful as they will be
+                       ignored by users -->
                   <violationSeverity>warning</violationSeverity>
                 </configuration>
               </execution>
@@ -364,7 +365,9 @@ Sections that did not require modification or management have been removed. Much
               <execution>
                 <!-- TODO set up namespacing rules for all Maven
                      execution IDs to avoid collisions or accidental
-                     overrides -->
+                     overrides. For instance this id should be
+                     auspicacious-parent-pom-pmd or similar, maybe
+                     even with the groupid. -->
                 <id>pmd</id>
                 <goals>
                   <goal>check</goal>
@@ -431,8 +434,6 @@ Sections that did not require modification or management have been removed. Much
                     <dependencyConvergence>
                       <uniqueVersions>true</uniqueVersions>
                     </dependencyConvergence>
-                    <!-- TODO turn this on after support for 11 is added -->
-                    <!-- https://github.com/mojohaus/extra-enforcer-rules/pull/63/files-->
                     <enforceBytecodeVersion>
                       <maxJdkVersion>11</maxJdkVersion>
                     </enforceBytecodeVersion>
@@ -492,7 +493,8 @@ Sections that did not require modification or management have been removed. Much
                 </goals>
                 <configuration>
                   <failOnWarning>true</failOnWarning>
-                  <skip>true</skip><!-- TODO fix the issue with Mockito -->
+                  <skip>true</skip><!-- TODO fix the issue with
+                  Mockito so this can be turned back on -->
                   <!-- Any commonly-used dependency that is typically
                        accessed in a manner that does not show up in
                        the bytecode (and so would typically cause
