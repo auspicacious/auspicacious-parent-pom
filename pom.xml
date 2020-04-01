@@ -235,7 +235,7 @@ Sections that did not require modification or management have been removed. Much
             <dependency>
               <groupId>com.puppycrawl.tools</groupId>
               <artifactId>checkstyle</artifactId>
-              <version>8.16</version>
+              <version>8.29</version>
             </dependency>
             <dependency>
               <groupId>org.auspicacious</groupId>
