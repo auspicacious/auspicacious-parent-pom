@@ -18,7 +18,7 @@ Sections that did not require modification or management have been removed. Much
     <linkXRef>false</linkXRef><!-- https://stackoverflow.com/questions/12038238/unable-to-locate-source-xref-to-link-to -->
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <version.auspicacious-parent-pom-resources>1-SNAPSHOT</version.auspicacious-parent-pom-resources>
-    <version.pmd>6.10.0</version.pmd>
+    <version.pmd>6.22.0</version.pmd>
   </properties>
 
   <dependencyManagement>
@@ -26,7 +26,7 @@ Sections that did not require modification or management have been removed. Much
       <dependency>
         <groupId>com.google.errorprone</groupId>
         <artifactId>error_prone_core</artifactId>
-        <version>2.3.2</version>
+        <version>2.3.4</version>
       </dependency>
       <dependency>
         <groupId>com.google.code.findbugs</groupId>
@@ -36,22 +36,22 @@ Sections that did not require modification or management have been removed. Much
       <dependency>
         <groupId>org.checkerframework</groupId>
         <artifactId>checker-qual</artifactId>
-        <version>2.5.8</version>
+        <version>3.2.0</version>
       </dependency>
       <dependency>
         <groupId>com.google.errorprone</groupId>
         <artifactId>error_prone_annotations</artifactId>
-        <version>2.3.2</version>
+        <version>2.3.4</version>
       </dependency>
       <dependency>
         <groupId>com.github.spotbugs</groupId>
         <artifactId>spotbugs-annotations</artifactId>
-        <version>3.1.11</version>
+        <version>4.0.1</version>
       </dependency>
       <dependency>
         <groupId>org.ow2.asm</groupId>
         <artifactId>asm</artifactId>
-        <version>7.0</version>
+        <version>8.0</version>
       </dependency>
     </dependencies>
   </dependencyManagement>
@@ -78,7 +78,7 @@ Sections that did not require modification or management have been removed. Much
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
           <artifactId>maven-assembly-plugin</artifactId>
-          <version>3.1.1</version>
+          <version>3.2.0</version>
         </plugin>
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
@@ -88,15 +88,15 @@ Sections that did not require modification or management have been removed. Much
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
           <artifactId>maven-compiler-plugin</artifactId>
-          <version>3.8.0</version>
+          <version>3.8.1</version>
           <configuration>
             <!-- TODO remove debug symbols from final output? -->
             <failOnError>true</failOnError>
             <failOnWarning>true</failOnWarning>
             <showDeprecation>true</showDeprecation>
             <showWarnings>true</showWarnings>
-            <source>11</source>
-            <target>11</target>
+            <source>14</source>
+            <target>14</target>
             <!-- The documentation claims that compilerArgs is only
                  used when fork=true. This is not true. Without
                  specifying -Xlint:all here, for instance, several
@@ -133,18 +133,7 @@ Sections that did not require modification or management have been removed. Much
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
           <artifactId>maven-dependency-plugin</artifactId>
-          <version>3.1.1</version>
-          <dependencies>
-            <!-- TODO remove this dependency once a new version of
-                 maven-dependency-plugin is released that supports Java
-                 11 -->
-            <!-- https://issues.apache.org/jira/browse/MDEP-613 -->
-            <dependency>
-              <groupId>org.ow2.asm</groupId>
-              <artifactId>asm</artifactId>
-              <version>7.0</version>
-            </dependency>
-          </dependencies>
+          <version>3.1.2</version>
         </plugin>
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
@@ -159,12 +148,12 @@ Sections that did not require modification or management have been removed. Much
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
           <artifactId>maven-jar-plugin</artifactId>
-          <version>3.1.1</version>
+          <version>3.2.0</version>
         </plugin>
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
           <artifactId>maven-release-plugin</artifactId>
-          <version>2.5.3</version>
+          <version>3.0.0-M1</version>
         </plugin>
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
@@ -174,12 +163,12 @@ Sections that did not require modification or management have been removed. Much
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
           <artifactId>maven-site-plugin</artifactId>
-          <version>3.7.1</version>
+          <version>3.9.0</version>
         </plugin>
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
           <artifactId>maven-surefire-plugin</artifactId>
-          <version>3.0.0-M3</version>
+          <version>3.0.0-M4</version>
           <configuration>
             <systemPropertyVariables>
               <!-- This is used by logback test configurations. -->
@@ -195,12 +184,12 @@ Sections that did not require modification or management have been removed. Much
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
           <artifactId>maven-enforcer-plugin</artifactId>
-          <version>3.0.0-M2</version>
+          <version>3.0.0-M3</version>
           <dependencies>
             <dependency>
               <groupId>org.codehaus.mojo</groupId>
               <artifactId>extra-enforcer-rules</artifactId>
-              <version>1.1</version>
+              <version>1.2</version>
             </dependency>
           </dependencies>
         </plugin>
@@ -230,12 +219,12 @@ Sections that did not require modification or management have been removed. Much
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
           <artifactId>maven-checkstyle-plugin</artifactId>
-          <version>3.0.0</version>
+          <version>3.1.1</version>
           <dependencies>
             <dependency>
               <groupId>com.puppycrawl.tools</groupId>
               <artifactId>checkstyle</artifactId>
-              <version>8.16</version>
+              <version>8.31</version>
             </dependency>
             <dependency>
               <groupId>org.auspicacious</groupId>
@@ -247,7 +236,7 @@ Sections that did not require modification or management have been removed. Much
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
           <artifactId>maven-pmd-plugin</artifactId>
-          <version>3.11.0</version>
+          <version>3.13.0</version>
           <dependencies>
             <dependency>
               <groupId>net.sourceforge.pmd</groupId>
@@ -284,12 +273,12 @@ Sections that did not require modification or management have been removed. Much
         <plugin>
           <groupId>com.github.spotbugs</groupId>
           <artifactId>spotbugs-maven-plugin</artifactId>
-          <version>3.1.10</version>
+          <version>4.0.0</version>
           <dependencies>
             <dependency>
               <groupId>com.github.spotbugs</groupId>
               <artifactId>spotbugs</artifactId>
-              <version>3.1.11</version>
+              <version>4.0.1</version>
             </dependency>
             <dependency>
               <groupId>org.auspicacious</groupId>
@@ -301,12 +290,12 @@ Sections that did not require modification or management have been removed. Much
         <plugin>
           <groupId>org.basepom.maven</groupId>
           <artifactId>duplicate-finder-maven-plugin</artifactId>
-          <version>1.3.0</version>
+          <version>1.4.0</version>
         </plugin>
         <plugin>
           <groupId>org.jacoco</groupId>
           <artifactId>jacoco-maven-plugin</artifactId>
-          <version>0.8.2</version>
+          <version>0.8.5</version>
         </plugin>
       </plugins>
     </pluginManagement>
@@ -403,12 +392,12 @@ Sections that did not require modification or management have been removed. Much
                     <plugin>
                       <groupId>com.h3xstream.findsecbugs</groupId>
                       <artifactId>findsecbugs-plugin</artifactId>
-                      <version>1.8.0</version>
+                      <version>1.10.1</version>
                     </plugin>
                     <plugin>
-                      <groupId>com.mebigfatguy.fb-contrib</groupId>
-                      <artifactId>fb-contrib</artifactId>
-                      <version>7.4.3.sb</version>
+                      <groupId>com.mebigfatguy.sb-contrib</groupId>
+                      <artifactId>sb-contrib</artifactId>
+                      <version>7.4.7</version>
                     </plugin>
                   </plugins>
                 </configuration>
@@ -434,16 +423,14 @@ Sections that did not require modification or management have been removed. Much
                     <dependencyConvergence>
                       <uniqueVersions>true</uniqueVersions>
                     </dependencyConvergence>
-                    <enforceBytecodeVersion>
-                      <maxJdkVersion>11</maxJdkVersion>
-                    </enforceBytecodeVersion>
+                    <!-- TODO enforceBytecodeVersion after JDK 14 supported (from extra-enforcer-rules) -->
                     <!-- <requireEncoding /> TODO this doesn't work, often guesses ISO-8859-1 instead of UTF-8 -->
                     <!-- <reactorModuleConvergence /> TODO figure out how to apply this -->
                     <requireJavaVersion>
-                      <version>11.0.1</version>
+                      <version>14</version>
                     </requireJavaVersion>
                     <requireMavenVersion>
-                      <version>[3.6.0]</version>
+                      <version>[3.6.3]</version>
                     </requireMavenVersion>
                     <requireUpperBoundDeps />
                     <!-- TODO require release versions during release -->
@@ -456,7 +443,6 @@ Sections that did not require modification or management have been removed. Much
           <plugin>
             <groupId>org.basepom.maven</groupId>
             <artifactId>duplicate-finder-maven-plugin</artifactId>
-            <version>1.3.0</version>
             <executions>
               <execution>
                 <id>duplicate-finder</id>
