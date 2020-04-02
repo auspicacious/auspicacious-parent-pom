@@ -4,6 +4,8 @@ Writing consistent, maintainable code in any programming language is hard. Java 
 
 All of this static analysis runs by default and creates failures by default, to encourage issues to be fixed early in the process. However, it is possible to disable most of it, by passing `-DdisableSafeties` on the command line.
 
+Configuration files for tools like Checkstyle, PMD, etc. are packaged separately in [auspicacious-parent-pom-resources](https://github.com/auspicacious/auspicacious-parent-pom-resources).
+
 ## License
 
 Copyright (C) 2019-2020 Andrew Todd at@auspicacious.org
